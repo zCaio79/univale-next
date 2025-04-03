@@ -111,7 +111,7 @@ export default function EnquetesControl() {
                     <ArrowRight className="size-6 text-zinc-700 hidden md:flex" />
                     <ArrowDown className="size-6 text-zinc-700 md:hidden" />
 
-                    <Link href="/enquetescontrol/novaenquete"
+                    <Link href="/admin/novaenquete"
                         className="flex  gap-2 items-center bg-blue-500 rounded-md text-sm text-zinc-50 py-1.5 px-4 font-bold cursor-pointer hover:bg-blue-600
                         md:text-base"
                     >

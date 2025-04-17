@@ -3,8 +3,12 @@
 import { Megaphone, Wifi } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import LogoutButton from "../buttons/logoutButton";
 
 export default function Header() {
+
+  const { user } = useAuth()
 
   const pathName = usePathname()
 
@@ -37,11 +41,14 @@ export default function Header() {
             <Link href="/enquetes" className="text-sm text-zinc-800 hover:text-zinc-900">Enquetes</Link>
           </div>
 
-          {(pathName != "/login" && pathName != "/admin/login") && 
+          {!user && pathName !== "/login" && ( 
           <Link href="/login"
-            className={`font-semibold text-xs py-1.5 px-4 rounded-md text-zinc-50 shadow-md cursor-pointer bg-amber-500 hover:bg-amber-600 md:text-sm`}>
+            className="font-semibold text-xs py-1.5 px-4 rounded-md text-zinc-50 shadow-md cursor-pointer bg-amber-500 hover:bg-amber-600 md:text-sm">
             Login
-          </Link>}
+          </Link>
+          )}
+
+          {user && <LogoutButton/>}
           
         </nav>
 

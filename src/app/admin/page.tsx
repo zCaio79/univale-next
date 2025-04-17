@@ -1,5 +1,5 @@
 import MinimalHeader from "@/components/headers/minimalHeader";
-import { NewuserForm } from "@/components/modals/newuserForm";
+import NewUserForm from "@/components/modals/newuserForm";
 import { ArrowDown, ArrowRight, PencilLine } from "lucide-react";
 import Link from "next/link";
 
@@ -71,7 +71,7 @@ export default function Admin(){
 
                 </article>
 
-                <NewuserForm/>
+                <NewUserForm/>
         
               </main>
         

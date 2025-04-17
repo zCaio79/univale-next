@@ -12,7 +12,7 @@ export default function AllSugestionsBox(props: allSugestionsBoxProps) {
 
         <section
             id="sugestions"
-            className="flex self-center justify-center flex-wrap w-full h-[65vh] overflow-scroll gap-8 p-6 rounded-lg bg-zinc-50 md:w-[65%]"
+            className="flex self-center justify-center flex-wrap w-full h-[65vh] overflow-y-scroll overflow-x-hidden gap-8 p-6 rounded-lg bg-zinc-50 md:w-[65%]"
         >
             {props.sugestions.map((sug, index) => (
                 <Sugestion key={index}

@@ -4,3 +4,32 @@
 @theme{
   --font-poppins: "poppins", sans-serif;
 }
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin; /* Firefox */
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}

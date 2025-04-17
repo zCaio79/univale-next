@@ -3,6 +3,8 @@
 import { Heart, Lightbulb } from "lucide-react";
 import { useState } from "react";
 
+import { useAuth } from "@/context/AuthContext";
+
 
 export type sugestionProps = {
     title: string,
@@ -13,6 +15,8 @@ export type sugestionProps = {
 }
 
 export default function Sugestion(props: sugestionProps) {
+
+    const { user } = useAuth()
 
     const [likes, setLikes] = useState(props.likes_amounth)
     let flag = ""
@@ -27,9 +31,9 @@ export default function Sugestion(props: sugestionProps) {
         setLikes(likes + 1)
     }
 
-    if(props.flag == "educação"){
+    if (props.flag == "educação") {
         flag = 'bg-red-400'
-    } else if(props.flag == "estrutura"){
+    } else if (props.flag == "estrutura") {
         flag = 'bg-blue-400'
     } else {
         flag = 'bg-emerald-400'
@@ -48,24 +52,26 @@ export default function Sugestion(props: sugestionProps) {
                 <p>
                     <span className={`flex font-semibold text-zinc-50 text-xs w-fit rounded-md py-1 px-1.5
                         ${flag}`}>
-                    {props.flag}
+                        {props.flag}
                     </span>
                 </p>
-                <button className="flex self-end gap-1.5 mr-2 cursor-pointer"
-                    onClick={handleLike}>
-                    {Like ?
-                        <>
-                            <span className="text-sm font-semibold">{likes}</span>
-                            <Heart className="text-rose-500 animate-[pulse_2s_linear_1] rounded size-5" />
-                        </>
-                        :
-                        <>
-                            <span className="text-sm font-semibold">{likes}</span>
-                            <Heart className=" size-5" />
-                        </>
-                    }
+                {user &&
+                    <button className="flex self-end gap-1.5 mr-2 cursor-pointer"
+                        onClick={handleLike}>
+                        {Like ?
+                            <>
+                                <span className="text-sm font-semibold">{likes}</span>
+                                <Heart className="text-rose-500 animate-[pulse_2s_linear_1] rounded size-5" />
+                            </>
+                            :
+                            <>
+                                <span className="text-sm font-semibold">{likes}</span>
+                                <Heart className=" size-5" />
+                            </>
+                        }
 
-                </button>
+                    </button>
+                }
             </div>
 
         </div>

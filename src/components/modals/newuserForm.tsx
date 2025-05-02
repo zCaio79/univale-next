@@ -93,6 +93,7 @@ export default function NewUserForm() {
                             required
                             className="flex outline-0 text-sm rounded-md text-wrap py-2 px-3 pr-8 w-full bg-zinc-50"
                             maxLength={10}
+                            minLength={6}
                             placeholder="RA ou senha"
                             onChange={(event) => setPassword(event.target.value)}
                         />
@@ -131,7 +132,7 @@ export default function NewUserForm() {
             }
 
             {isLoading ?
-                <div className="absolute top-0 flex w-full h-full justify-center items-center bg-zinc-50">
+                <div className="flex w-full justify-center items-center">
 
                     <div className="size-8 rounded-full border-4 border-dashed text-zinc-800 animate-spin"></div>
 

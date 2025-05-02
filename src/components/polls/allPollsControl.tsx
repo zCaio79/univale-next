@@ -2,8 +2,9 @@
 
 
 import { pollProps } from "./poll"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PollControl from "./pollControl"
+import { LoaderCircle } from "lucide-react"
 
 type allPollsControl = {
     polls: pollProps[]
@@ -11,17 +12,19 @@ type allPollsControl = {
 
 export default function AllPollsControl(props: allPollsControl) {
     const [filter, setFilter] = useState("all");
-    const [filteredPolls, setFilteredPolls] = useState<pollProps[]>(props.polls);
-
-    function handleFilterChange(selectedFilter: string) {
-        setFilter(selectedFilter);
-
-        if (selectedFilter == "all") {
-            setFilteredPolls(props.polls);
-        } else {
-            setFilteredPolls(props.polls.filter(poll => poll.status == selectedFilter));
+        const [filteredPolls, setFilteredPolls] = useState<pollProps[]>([]);
+    
+        useEffect(() => {
+            if (filter === "all") {
+                setFilteredPolls(props.polls);
+            } else {
+                setFilteredPolls(props.polls.filter(poll => poll.status === filter));
+            }
+        }, [filter, props.polls]);
+    
+        function handleFilterChange(selectedFilter: string) {
+            setFilter(selectedFilter);
         }
-    }
 
     return (
         <>
@@ -52,21 +55,27 @@ export default function AllPollsControl(props: allPollsControl) {
                 </button>
             </div>
 
+            {!filteredPolls && 
+                <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
+                    <p>Nenhuma Enquete Disponivel!</p>
+                </div>}
+
             {filteredPolls.length === 0 ? (
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
-                    <p>Nenhuma enquete disponível.</p>
+                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
                 </div>
             ) : (
                 <section id="polls" key={filter}
-                    className="flex self-center flex-col w-full h-fit items-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 lg:w-[65%] lg:flex-row">
-                    {filteredPolls.map((poll, index) => (
-                        <PollControl key={index}
+                    className="flex self-center flex-col w-full h-fit items-center justify-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 lg:w-[65%] lg:flex-row">
+                    {filteredPolls.map((poll) => (
+                        <PollControl
+                            key={poll.id}
+                            id={poll.id}
                             title={poll.title}
                             description={poll.description}
                             variant={poll.variant}
                             options={poll.options}
                             status={poll.status}
-                            votes={poll.votes}
                         />
                     ))}
                 </section>

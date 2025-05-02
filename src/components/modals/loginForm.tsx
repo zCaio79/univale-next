@@ -3,7 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { supabase } from "@/lib/supabaseClient";
 import bcrypt from "bcryptjs";
-import { ChevronLeft, ChevronRight, CircleAlert, EyeIcon, EyeOffIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, CircleAlert, EyeIcon, EyeOffIcon, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function LoginForm() {
@@ -139,7 +139,7 @@ export default function LoginForm() {
 
             {isLoading ?
                 <div className="absolute top-0 flex w-full h-screen justify-center items-center bg-zinc-50">
-                    <div className="size-8 rounded-full border-4 border-dashed text-zinc-800 animate-spin"></div>
+                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
                 </div>
                 :
                 <button

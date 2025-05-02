@@ -54,10 +54,17 @@ export default function AllPollsBox(props: allPollsBoxProps) {
                 </button>
             </div>
 
-            {!filteredPolls && 
+            {((filteredPolls.length === 0) && (filter == "closed")) && 
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
                     <p>Nenhuma Enquete Disponivel!</p>
-                </div>}
+                </div>
+            }
+
+            {filteredPolls.length == 0 && 
+                <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
+                    <p>Nenhuma Enquete Disponivel!</p>
+                </div>
+            }
 
             {filteredPolls.length === 0 ? (
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
@@ -65,7 +72,7 @@ export default function AllPollsBox(props: allPollsBoxProps) {
                 </div>
             ) : (
                 <section id="polls" key={filter}
-                    className="flex self-center flex-col w-full h-fit items-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 lg:w-[65%] lg:flex-row">
+                    className="flex self-center justify-center flex-col w-full h-fit items-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 lg:w-[65%] lg:flex-row">
                     {filteredPolls.map((poll) => (
                         <Poll
                             key={poll.id}

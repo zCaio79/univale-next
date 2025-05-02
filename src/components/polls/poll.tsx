@@ -37,8 +37,10 @@ export default function Poll(props: pollProps) {
 
     useEffect(() => {
         const checkIfVoted = async () => {
-            if (!user?.email) return
-
+            if (!user?.email) {
+                setIsLoading(false)
+                return
+            }
             const { data, error } = await supabase
                 .from("poll_votes")
                 .select("poll_id")
@@ -138,8 +140,8 @@ export default function Poll(props: pollProps) {
                     {localOptions.map((op, index) => (
                         <div key={index} className="flex gap-2 items-center">
                             <div className="flex w-full justify-between items-center rounded-xl bg-zinc-50 py-2 px-4 border-2 border-zinc-200">
-                                <span className="flex gap-1.5 items-center text-xs sm:text-sm font-medium"><Dot className="text-zinc-400 size-5"/>{op.option_name}</span>
-                                <span className="flex text-xs text-zinc-700 sm:text-sm font-medium">{op.votes} votos</span>
+                                <span className="flex gap-1.5 items-center text-xs sm:text-sm "><Dot className="text-zinc-400 size-5"/>{op.option_name}</span>
+                                <span className="flex text-xs text-zinc-700 sm:text-sm">{op.votes} votos</span>
                             </div>
                         </div>
                     ))}
@@ -178,7 +180,7 @@ export default function Poll(props: pollProps) {
                                 <Unlink2 className={`size-5 transition ${vote === op.id ? "text-zinc-600" : "text-zinc-300 hover:text-zinc-500"}`} />
                             </button>
                             <div className="flex w-full rounded-xl bg-zinc-50 py-2 px-4 border-2 border-zinc-200">
-                                <span className="text-xs sm:text-sm font-semibold">{op.option_name}</span>
+                                <span className="text-xs sm:text-sm">{op.option_name}</span>
                             </div>
                         </div>
                     ))}

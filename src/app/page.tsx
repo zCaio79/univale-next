@@ -26,7 +26,7 @@ export default async function Home() {
     
   ];
 
-  const { data: polls, error: pollsError } = await supabase.from("polls").select("*").limit(4);
+  const { data: polls, error: pollsError } = await supabase.from("polls").select("*").order("created_at", { ascending: false }).limit(4);
 
   if (pollsError) {
     console.error("Erro ao buscar enquetes:", pollsError);

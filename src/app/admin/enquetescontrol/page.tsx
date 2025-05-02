@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default async function EnquetesControl() {
 
-    const { data: polls, error: pollsError } = await supabase.from("polls").select("*");
+    const { data: polls, error: pollsError } = await supabase.from("polls").select("*").order("created_at", { ascending: false });
       if (pollsError) {
         console.error("Erro ao buscar enquetes:", pollsError);
       }

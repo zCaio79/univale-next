@@ -26,7 +26,7 @@ export default function SugestionsBox(props: sugestionsBoxProps) {
                 />
             ))}
 
-            <p className="text-zinc-500 text-sm font-semibold self-center mt-1.5">Apoie as sugestões dos seus colegas</p>
+            <p className="text-zinc-500 text-sm font-semibold self-center py-2">Apoie as sugestões dos seus colegas</p>
 
         </section>
     )

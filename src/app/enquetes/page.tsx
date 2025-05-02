@@ -6,7 +6,7 @@ import { supabase } from "@/lib/supabaseClient";
 
 export default async function Enquetes() {
 
-  const { data: polls, error: pollsError } = await supabase.from("polls").select("*");
+  const { data: polls, error: pollsError } = await supabase.from("polls").select("*").order("created_at", { ascending: false });
   if (pollsError) {
     console.error("Erro ao buscar enquetes:", pollsError);
   }

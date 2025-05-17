@@ -54,21 +54,16 @@ export default function AllPollsBox(props: allPollsBoxProps) {
                 </button>
             </div>
 
-            {((filteredPolls.length === 0) && (filter == "closed")) && 
-                <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
-                    <p>Nenhuma Enquete Disponivel!</p>
-                </div>
-            }
 
-            {filteredPolls.length == 0 && 
+            {!filteredPolls && 
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
-                    <p>Nenhuma Enquete Disponivel!</p>
+                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
                 </div>
             }
 
             {filteredPolls.length === 0 ? (
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
-                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
+                    <p>Nenhuma Enquete Disponivel!</p>
                 </div>
             ) : (
                 <section id="polls" key={filter}

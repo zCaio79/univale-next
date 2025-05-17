@@ -1,10 +1,13 @@
 'use client'
 
-import { CircleCheck, CircleHelp, Unlink2, BookmarkCheck } from "lucide-react";
+import { CircleCheck, CircleHelp, Unlink2, BookmarkCheck, TriangleAlert, LoaderCircle } from "lucide-react";
 import { pollProps } from "./poll";
 import { supabase } from "@/lib/supabaseClient";
+import { useState } from "react";
 
 export default function PollControl(props: pollProps) {
+    const [deleteModal, setDeleteModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const isPollActive = props.status
 
     const handleClosePoll = async () => {
@@ -12,32 +15,87 @@ export default function PollControl(props: pollProps) {
             .from("polls")
             .update({ status: "closed" })
             .eq("id", props.id);
-    
+
         if (error) {
             console.error("Erro ao finalizar a enquete:", error);
         } else {
             window.location.reload();
         }
     };
-    
+
     const handleReopenPoll = async () => {
         const { error } = await supabase
             .from("polls")
             .update({ status: "open" })
             .eq("id", props.id);
-    
+
         if (error) {
             console.error("Erro ao reabrir a enquete:", error);
         } else {
             window.location.reload();
         }
     };
-    
+
+    const handleDeletePoll = async () => {
+        setIsLoading(true)
+        const { error } = await supabase
+            .from("polls")
+            .delete()
+            .eq("id", props.id);
+
+        if (error) {
+            console.error("Erro ao excluir a enquete:", error);
+            setIsLoading(false)
+        } else {
+            window.location.reload();
+        }
+    };
+
+    const handleDeleteConfirm = () => {
+        if (!deleteModal) {
+            setDeleteModal(true)
+        } else {
+            setDeleteModal(false)
+        }
+    }
+
+    if (deleteModal) {
+        return (
+            <div className="absolute z-50 top-0 flex flex-col w-full h-full md:h-[50vh] p-4 rounded-lg justify-center items-center gap-6 bg-zinc-100" >
+                <p className="flex border-2 py-2 px-3 border-zinc-400 rounded flex-wrap gap-3 justify-center items-center text-center text-sm"><TriangleAlert className="size-5 text-red-500" /> Deseja realmente excluir a enquete?
+                    <span className="text-zinc-50 bg-zinc-400 rounded py-1.5 px-3 text-sm">{props.title}</span></p>
+                <div className="flex gap-4">
+                    
+                    {isLoading ? <LoaderCircle className="text-zinc-800 size-6 animate-spin" />
+                        :
+                        <>
+                            <button
+                                onClick={handleDeleteConfirm}
+                                type="button"
+                                className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={handleDeletePoll}
+                                className="bg-blue-500 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-blue-600"
+                            >
+                                Excluir
+                            </button>
+                        </>
+                    }
+                </div>
+            </div>
+        )
+    }
 
 
     if (isPollActive == "open") {
 
         return (
+
 
             <div
                 className="flex relative flex-col justify-center w-full gap-4 h-fit rounded-md border-4 p-4 bg-zinc-200 border-zinc-400 
@@ -46,7 +104,7 @@ export default function PollControl(props: pollProps) {
 
                 <div className="flex flex-col w-full h-fit gap-2">
                     <span className="flex w-full items-center gap-2 uppercase text-sm font-bold text-zinc-800 sm:text-lg">
-                        <CircleHelp className="size-5"/>
+                        <CircleHelp className="size-5" />
                         {props.title}
                     </span>
                     <span className="flex w-full text-xs text-wrap font-medium text-zinc-700">
@@ -73,20 +131,21 @@ export default function PollControl(props: pollProps) {
                 </div>
 
                 <div className="flex justify-between w-full gap-4">
-                <button
-                    type="button"
-                    className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
-                >
-                    Excluir
-                </button>
+                    <button
+                        onClick={handleDeleteConfirm}
+                        type="button"
+                        className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
+                    >
+                        Excluir
+                    </button>
 
-                <button
-                    type="button"
-                    onClick={handleClosePoll}
-                    className="bg-zinc-500 cursor-pointer flex-grow text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-zinc-600"
-                >
-                    Finalizar
-                </button>
+                    <button
+                        type="button"
+                        onClick={handleClosePoll}
+                        className="bg-zinc-500 cursor-pointer flex-grow text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-zinc-600"
+                    >
+                        Finalizar
+                    </button>
                 </div>
 
             </div>
@@ -105,7 +164,7 @@ export default function PollControl(props: pollProps) {
 
                 <div className="flex flex-col w-full h-fit gap-4">
                     <span className="flex w-full items-center gap-4 uppercase text-sm font-bold text-zinc-800 sm:text-lg">
-                        {props.status == "closed" ? <BookmarkCheck/> : <CircleCheck />}
+                        {props.status == "closed" ? <BookmarkCheck /> : <CircleCheck />}
                         {props.title}
                     </span>
                     <span className="flex w-full text-xs text-wrap font-medium text-zinc-700">
@@ -126,25 +185,26 @@ export default function PollControl(props: pollProps) {
                     ))}
                 </div>
 
-                
-                <div className="flex justify-between w-full gap-4">
-                <button
-                    type="button"
-                    className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
-                >
-                    Excluir
-                </button>
 
-                <button
-                    type="button"
-                    onClick={handleReopenPoll}
-                    className="bg-blue-500 cursor-pointer flex-grow text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-blue-600"
-                >
-                    Reabrir Votação
-                </button>
+                <div className="flex justify-between w-full gap-4">
+                    <button
+                        onClick={handleDeletePoll}
+                        type="button"
+                        className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
+                    >
+                        Excluir
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={handleReopenPoll}
+                        className="bg-blue-500 cursor-pointer flex-grow text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-blue-600"
+                    >
+                        Reabrir Votação
+                    </button>
                 </div>
 
-                
+
 
 
             </div>

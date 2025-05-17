@@ -63,17 +63,17 @@ export default function AllPollsControl(props: allPollsControl) {
 
             {!filteredPolls && 
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
-                    <p>Nenhuma Enquete Disponivel!</p>
+                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
                 </div>
             }
             
             {filteredPolls.length === 0 ? (
                 <div className="flex self-center w-full md:w-[65%] h-[70vh] justify-center items-center text-gray-500 rounded-lg bg-zinc-50">
-                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
+                    <p>Nenhuma Enquete Disponivel!</p>
                 </div>
             ) : (
                 <section id="polls" key={filter}
-                    className="flex self-center flex-col w-full h-fit items-center justify-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 lg:w-[65%] lg:flex-row">
+                    className="flex relative self-center flex-col w-full h-fit items-center justify-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 lg:w-[65%] lg:flex-row">
                     {filteredPolls.map((poll) => (
                         <PollControl
                             key={poll.id}

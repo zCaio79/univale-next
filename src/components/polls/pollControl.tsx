@@ -61,7 +61,7 @@ export default function PollControl(props: pollProps) {
 
     if (deleteModal) {
         return (
-            <div className="absolute z-50 top-0 flex flex-col w-full h-full md:h-[50vh] p-4 rounded-lg justify-center items-center gap-6 bg-zinc-100" >
+            <div className="absolute z-50 top-0 flex flex-col w-full min-h-[50vh] h-full p-4 rounded-lg justify-center items-center gap-6 bg-zinc-100" >
                 <p className="flex border-2 py-2 px-3 border-zinc-400 rounded flex-wrap gap-3 justify-center items-center text-center text-sm"><TriangleAlert className="size-5 text-red-500" /> Deseja realmente excluir a enquete?
                     <span className="text-zinc-50 bg-zinc-400 rounded py-1.5 px-3 text-sm">{props.title}</span></p>
                 <div className="flex gap-4">

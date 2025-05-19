@@ -156,7 +156,7 @@ export default function Poll(props: pollProps) {
                 ${props.status === "closed" ? "bg-zinc-200 border-zinc-400" : variants[props.variant]} 
                 md:w-[48%] xl:h-[40vh]`}>
 
-                {error && <ModalStatus variant="error" />}
+                {error && <ModalStatus variant="errorpoll" />}
 
                 <div className="flex flex-col w-full h-fit gap-4">
                     <span className="flex w-full items-center gap-4 uppercase text-sm font-bold text-zinc-800 sm:text-lg">

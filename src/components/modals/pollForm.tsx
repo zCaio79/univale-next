@@ -30,7 +30,6 @@ export default function PollForm() {
         }
 
         try {
-            console.log("User ID:", user?.id);
 
             const { data: poll, error: pollError } = await supabase
                 .from('polls')
@@ -48,11 +47,14 @@ export default function PollForm() {
             if (!poll?.id) throw new Error("Enquete criada sem ID.");
 
 
-            const optionsToInsert = op.map(option => ({
-                poll_id: poll.id,
-                option_name: option,
-                votes: 0
-            }));
+            const optionsToInsert = op
+                .filter(option => option.trim() !== "")
+                .map(option => ({
+                    poll_id: poll.id,
+                    option_name: option,
+                    votes: 0
+                }));
+
 
             const { error: optionsError } = await supabase
                 .from('poll_options')
@@ -60,12 +62,12 @@ export default function PollForm() {
 
             if (optionsError) throw new Error(optionsError.message);
 
-            setSucess(true)
         } catch (err) {
             setError("erro: " + err)
             console.log("Erro:", err);
         } finally {
             setIsLoading(false);
+            setSucess(true)
         }
     };
 
@@ -78,7 +80,7 @@ export default function PollForm() {
     };
 
     if (sucess) {
-        return <ModalStatus variant="sucess" />
+        return <ModalStatus variant="sucesspoll" />
     }
 
     return (
@@ -311,7 +313,7 @@ export default function PollForm() {
 
             {isLoading ?
                 <div className="absolute top-0 flex w-full h-full rounded-lg justify-center items-center bg-zinc-50">
-                    <LoaderCircle className="text-zinc-800 size-8 animate-spin"/>
+                    <LoaderCircle className="text-zinc-800 size-8 animate-spin" />
                 </div>
                 :
                 <div className="flex w-full justify-center gap-4">

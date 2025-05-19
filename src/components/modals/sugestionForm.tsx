@@ -1,15 +1,66 @@
 'use client'
 
-import { ChevronLeft, ChevronRight, CircleAlert } from "lucide-react"
+import { ChevronLeft, ChevronRight, CircleAlert, LoaderCircle } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
+import { useAuth } from "@/context/AuthContext"
+import { supabase } from "@/lib/supabaseClient"
+import ModalStatus from "./modalStatus"
 
 export default function SugestionForm() {
 
-    const [flag, setFlag] = useState("educação")
+    const { user } = useAuth()
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [error, setError] = useState<string>("")
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [sucess, setSucess] = useState<boolean>(false)
+
+    const [title, setTitle] = useState<string>("")
+    const [desc, setDesc] = useState<string>("")
+    const [flag, setFlag] = useState<string>("educação")
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setError("")
+        setIsLoading(true)
+
+        if (!user) {
+            setError("Usuário não está autenticado.");
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const { error: sugestionError } = await supabase
+                .from('sugestions')
+                .insert([{
+                    title: title,
+                    desc: desc,
+                    flag: flag,
+                    user_id: user.id
+                }])
+
+            if (sugestionError) {
+                setError("Erro ao Criar Sugestão: ")
+                console.log(sugestionError.message)
+                setIsLoading(false)
+                return
+            }
+        }
+        catch (err) {
+            setIsLoading(false)
+            setError("Erro ao Criar Sugestão")
+            console.log(""+err)
+            return
+        }
+        finally{
+            setIsLoading(false)
+            setSucess(true)
+        }
+    }
+
+    if (sucess) {
+            return <ModalStatus variant="sucessSugestion" />
     }
 
     return (
@@ -34,7 +85,8 @@ export default function SugestionForm() {
                         type="text"
                         className="flex outline-0 text-sm rounded-md py-2 px-3 w-full md:w-[40vh] bg-zinc-50"
                         maxLength={100}
-                        placeholder="qual o tema da sua sugestão?" />
+                        placeholder="qual o tema da sua sugestão?"
+                        onChange={(e) => { setTitle(e.target.value) }} />
                 </div>
                 <div className="flex justify-between flex-wrap flex-col gap-2 md:flex-row md:gap-6">
                     <label
@@ -45,7 +97,8 @@ export default function SugestionForm() {
                         required
                         className="flex outline-0 text-sm rounded-md text-wrap py-2 px-3 w-full md:w-[40vh] h-[20vh] bg-zinc-50"
                         maxLength={200}
-                        placeholder="descreva a sua ideia..." />
+                        placeholder="descreva a sua ideia com clareza..."
+                        onChange={(e) => { setDesc(e.target.value) }} />
                 </div>
 
             </div>
@@ -85,34 +138,51 @@ export default function SugestionForm() {
                 </div>
 
             </div>
-            
-            <div className="flex w-full gap-4 p-2 items-center border-2 border-zinc-200 justify-center md:w-[40vw]">
 
-                <CircleAlert className="text-zinc-600 size-5" />
+            {error != "" ?
 
-                <span className="flex items-center text-center text-zinc-600 text-xs font-semibold">
+                <div className="flex w-full gap-4 p-2 items-center border-2 border-red-200 justify-center md:w-[40vw]">
+                    <CircleAlert className="text-red-400 size-5" />
+                    <span className="flex items-center text-center text-red-400 text-xs font-semibold">
+                        {error}
+                    </span>
+                </div>
+                :
+                <div className="flex w-full gap-4 p-2 items-center border-2 border-zinc-200 justify-center md:w-[40vw]">
 
-                    Ao enviar uma sugestão apenas
-                    <br />
-                    a instituição poderá removê-la !
+                    <CircleAlert className="text-zinc-600 size-5" />
 
-                </span>
+                    <span className="flex items-center text-center text-zinc-600 text-xs font-semibold">
 
-            </div>
-            
-            <div className="flex w-full justify-center gap-4">
-                <Link
-                    href="/sugestoes"
-                    className="bg-zinc-500 text-zinc-50 font-bold rounded-md py-1.5 px-4 hover:bg-zinc-600"
-                >
-                    Cancelar
-                </Link>
-                <button type="submit"
-                    className="bg-amber-500 text-zinc-50 font-bold rounded-md py-1.5 px-4 hover:bg-amber-600"
-                >
-                    Enviar
-                </button>
-            </div>
+                        Ao enviar uma sugestão apenas
+                        <br />
+                        a instituição poderá removê-la!
+
+                    </span>
+
+                </div>
+            }
+
+            {isLoading ?
+                <div className="absolute top-0 flex w-full h-full rounded-lg justify-center items-center bg-zinc-50">
+                    <LoaderCircle className="text-zinc-800 size-8 animate-spin" />
+                </div>
+                :
+                <div className="flex w-full justify-center gap-4">
+                    <Link
+                        href="/sugestoes"
+                        className="bg-zinc-500 text-zinc-50 font-bold rounded-md py-1.5 px-4 hover:bg-zinc-600"
+                    >
+                        Cancelar
+                    </Link>
+                    <button type="submit"
+                        className="bg-amber-500 text-zinc-50 font-bold rounded-md py-1.5 px-4 hover:bg-amber-600"
+                    >
+                        Enviar
+                    </button>
+                </div>
+            }
+
 
         </form>
     )

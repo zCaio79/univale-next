@@ -10,15 +10,15 @@ export default function PollsBox({ polls }: pollsBoxProps) {
   
   if (!polls || polls.length === 0) { 
     return (
-      <div className="flex flex-col w-full h-fit justify-center items-center text-gray-500 flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 md:flex-row md:h-[86vh]">
+      <div className="flex flex-col w-full h-[20vh] justify-center items-center text-gray-500 flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 md:flex-row lg:h-[86vh]">
         <p>
           Nenhuma enquete disponível.
           <br />
           Visite
-          <Link href="/enquetes" className="text-amber-500 underline mx-2 text-sm">
-            Enquetes
+          <Link href={"https://univale.com.br/"} className="text-blue-500 font-medium underline mx-2 text-sm">
+            Univale
           </Link>
-          para ver mais
+          para saber mais.
         </p>
       </div>
     );

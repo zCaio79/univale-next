@@ -2,12 +2,13 @@ import { Check, X } from "lucide-react"
 import { useState } from "react"
 
 type votingStatusProps = {
-    variant: 'sucess' | 'error'
+    variant: 'sucesspoll' | 'errorpoll' | 'sucessSugestion'
 }
 
 const variants = {
-    sucess: "text-emerald-400",
-    error: "text-red-400"
+    sucesspoll: "text-emerald-400",
+    errorpoll: "text-red-400",
+    sucessSugestion: "text-emerald-400",
 }
 
 export default function ModalStatus(props: votingStatusProps) {
@@ -16,7 +17,7 @@ export default function ModalStatus(props: votingStatusProps) {
 
     if(!showModal) return null;
 
-    if (props.variant == 'error') {
+    if (props.variant == 'errorpoll') {
         return (
             <div className="absolute bg-zinc-50 flex flex-col text-sm self-center rounded-md gap-2 p-2 h-[92%] w-[95%] justify-center items-center 
                     md:h-[36vh]">
@@ -33,7 +34,7 @@ export default function ModalStatus(props: votingStatusProps) {
             </div>
         )
     } 
-    if (props.variant == 'sucess') {
+    if (props.variant == 'sucesspoll') {
         return (
             <div className="absolute bg-zinc-50 flex flex-col text-sm self-center rounded-md gap-2 p-2 h-full w-full justify-center items-center ">
                 <span className="flex items-center text-center gap-2 bg-zinc-50 border-2 p-4 border-zinc-200">
@@ -42,6 +43,22 @@ export default function ModalStatus(props: votingStatusProps) {
                 </span>
                 <button
                     onClick={() => (setShowModal(false), window.location.href = "/admin/novaenquete")}
+                    className="flex bg-emerald-400 rounded-md text-zinc-50 py-1.5 px-4 font-bold cursor-pointer hover:bg-emerald-500"
+                >
+                    ok
+                </button>
+            </div>
+        )
+    }
+    if (props.variant == 'sucessSugestion') {
+        return (
+            <div className="absolute bg-zinc-50 flex flex-col text-sm self-center rounded-md gap-2 p-2 h-full w-full justify-center items-center ">
+                <span className="flex items-center text-center gap-2 bg-zinc-50 border-2 p-4 border-zinc-200">
+                    <Check className={`size-5 ${variants[props.variant]}`} />
+                    Sugestão Enviada com Sucesso!
+                </span>
+                <button
+                    onClick={() => (setShowModal(false), window.location.href = "/sugestoes")}
                     className="flex bg-emerald-400 rounded-md text-zinc-50 py-1.5 px-4 font-bold cursor-pointer hover:bg-emerald-500"
                 >
                     ok

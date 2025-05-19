@@ -7,6 +7,9 @@ import { AuthProvider } from "@/context/AuthContext";
 export const metadata: Metadata = {
   title: "Opina Univale",
   description: "by zCaio79",
+  icons: {
+    icon: '/opinalogo.png',
+  }
 };
 
 export default function RootLayout({

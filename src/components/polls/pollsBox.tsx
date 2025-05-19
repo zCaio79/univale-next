@@ -10,7 +10,7 @@ export default function PollsBox({ polls }: pollsBoxProps) {
   
   if (!polls || polls.length === 0) { 
     return (
-      <div className="flex flex-col w-full h-[20vh] justify-center items-center text-gray-500 flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 md:flex-row lg:h-[86vh]">
+      <div className=" text-gray-500 h-[86vh] flex flex-col w-full min-h-fit  justify-center items-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 md:flex-row">
         <p>
           Nenhuma enquete disponível.
           <br />
@@ -27,7 +27,7 @@ export default function PollsBox({ polls }: pollsBoxProps) {
   return (
     <section
       id="polls"
-      className="flex flex-col w-full min-h-fit justify-center items-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 md:flex-row md:h-[86vh]"
+      className="flex flex-col w-full min-h-fit  justify-center items-center flex-wrap gap-4 p-4 rounded-lg bg-zinc-50 md:flex-row md:h-[86vh]"
     >
       {polls.map((poll) => (
         <Poll

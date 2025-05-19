@@ -5,6 +5,10 @@ import { ArrowDown, ArrowRight, Plus } from "lucide-react";
 import Link from "next/link";
 
 
+export const dynamic = 'force-dynamic'
+
+
+
 export default async function EnquetesControl() {
 
     const { data: polls, error: pollsError } = await supabase.from("polls").select("*").order("created_at", { ascending: false });

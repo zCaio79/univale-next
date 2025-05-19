@@ -4,6 +4,8 @@ import { supabase } from "@/lib/supabaseClient";
 import { ArrowDown, ArrowRight, Plus } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic'
+
 export default async function Sugestoes() {
 
   const { data: sugestions, error: sugestionsError } = await supabase.from("sugestions").select("*").order("created_at", { ascending: false });

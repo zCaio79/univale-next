@@ -4,6 +4,7 @@ import SugestionsBox from "@/components/sugestions/sugestionsBox";
 import MinimalHeader from "@/components/headers/minimalHeader";
 import { supabase } from "@/lib/supabaseClient";
 
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   

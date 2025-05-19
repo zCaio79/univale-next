@@ -3,6 +3,8 @@ import NewUserForm from "@/components/modals/newuserForm";
 import { ArrowDown, ArrowRight, PencilLine } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic'
+
 export default function Admin(){
     return(
 

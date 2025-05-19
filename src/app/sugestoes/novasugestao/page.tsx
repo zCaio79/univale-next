@@ -1,6 +1,6 @@
 import SugestionForm from "@/components/modals/sugestionForm";
 
-
+export const dynamic = 'force-dynamic'
 
 export default function NovaSugestão() {
     return (

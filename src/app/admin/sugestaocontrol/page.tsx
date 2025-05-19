@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { ArrowDown, ArrowRight, ScrollText } from "lucide-react";
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic'
 
 export default async function SugestaoControl() {
 

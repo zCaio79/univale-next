@@ -2,7 +2,7 @@ import MinimalHeader from "@/components/headers/minimalHeader";
 import AllPollsBox from "@/components/polls/allPollsBox";
 import { supabase } from "@/lib/supabaseClient";
 
-
+export const dynamic = 'force-dynamic'
 
 export default async function Enquetes() {
 

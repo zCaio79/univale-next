@@ -1,6 +1,9 @@
 import MinimalHeader from "@/components/headers/minimalHeader";
 import PollForm from "@/components/modals/pollForm";
 
+export const dynamic = 'force-dynamic'
+
+
 export default function NovaEnquete() {
 
 

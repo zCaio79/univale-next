@@ -14,10 +14,9 @@ const nextConfig: NextConfig = {
               img-src * data:;
               media-src 'self';
               script-src 'self' 'unsafe-inline';
-              style-src 'self' 'unsafe-inline';
-              font-src 'self' data:;
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+              font-src 'self' https://fonts.gstatic.com data:;
               frame-ancestors 'self';
-              connect-src 'self' https://*.supabase.co;
             `.replace(/\s{2,}/g, " "),
           },
           // Remove informações do servidor
@@ -34,6 +33,11 @@ const nextConfig: NextConfig = {
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
+          },
+          // Protege contra ataques de clickjacking
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
           },
           // Configura o comportamento do navegador em relação a scripts de terceiros
           {

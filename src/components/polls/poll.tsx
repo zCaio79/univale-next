@@ -127,7 +127,7 @@ export default function Poll(props: pollProps) {
                 md:w-[48%] xl:h-[40vh]`}>
 
                 <div className="flex flex-col w-full h-fit gap-4">
-                    <span className="flex w-full items-center gap-4 uppercase text-sm font-bold text-zinc-800 sm:text-lg">
+                    <span className="flex w-full items-center gap-4 text-sm font-semibold text-zinc-800 sm:text-lg">
                     {props.status == "closed" ? <BookmarkCheck className="size-5"/> : <CircleCheck className="size-5"/>}
                         {props.title}
                     </span>
@@ -159,7 +159,7 @@ export default function Poll(props: pollProps) {
                 {error && <ModalStatus variant="errorpoll" />}
 
                 <div className="flex flex-col w-full h-fit gap-4">
-                    <span className="flex w-full items-center gap-4 uppercase text-sm font-bold text-zinc-800 sm:text-lg">
+                    <span className="flex w-full items-center gap-4 text-sm font-semibold text-zinc-800 sm:text-lg">
                         <CircleHelp className="size-5"/>
                         {props.title}
                     </span>

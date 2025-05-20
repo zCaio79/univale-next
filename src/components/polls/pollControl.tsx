@@ -103,7 +103,7 @@ export default function PollControl(props: pollProps) {
             >
 
                 <div className="flex flex-col w-full h-fit gap-2">
-                    <span className="flex w-full items-center gap-2 uppercase text-sm font-bold text-zinc-800 sm:text-lg">
+                    <span className="flex w-full items-center gap-2 text-sm font-bold text-zinc-800 sm:text-lg">
                         <CircleHelp className="size-5" />
                         {props.title}
                     </span>
@@ -163,7 +163,7 @@ export default function PollControl(props: pollProps) {
 
 
                 <div className="flex flex-col w-full h-fit gap-4">
-                    <span className="flex w-full items-center gap-4 uppercase text-sm font-bold text-zinc-800 sm:text-lg">
+                    <span className="flex w-full items-center gap-4 text-sm font-bold text-zinc-800 sm:text-lg">
                         {props.status == "closed" ? <BookmarkCheck /> : <CircleCheck />}
                         {props.title}
                     </span>

@@ -43,15 +43,10 @@ export default function Header() {
 
           {!user && pathName !== "/login" && ( 
           <Link href="/login"
-            className="font-semibold text-xs py-1.5 px-4 rounded-md text-zinc-50 shadow-md cursor-pointer bg-amber-500 hover:bg-amber-600 md:text-sm">
+            className="font-semibold text-xs py-1 px-2 rounded-md text-zinc-50 shadow-md cursor-pointer bg-amber-500 hover:bg-amber-600 md:text-sm md:px-4 md:py-1.5">
             Login
           </Link>
           )}
-          {(user && pathName == "/") && <Link href="/admin"
-            className="font-semibold text-xs py-1.5 px-4 rounded-md text-zinc-50 shadow-md cursor-pointer bg-blue-500 hover:bg-blue-600 md:text-sm">
-            Admin
-          </Link>}
-          
 
           {user && <LogoutButton/>}
           

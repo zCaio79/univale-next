@@ -47,6 +47,11 @@ export default function Header() {
             Login
           </Link>
           )}
+          {(user && pathName == "/") && <Link href="/admin"
+            className="font-semibold text-xs py-1.5 px-4 rounded-md text-zinc-50 shadow-md cursor-pointer bg-blue-500 hover:bg-blue-600 md:text-sm">
+            Admin
+          </Link>}
+          
 
           {user && <LogoutButton/>}
           

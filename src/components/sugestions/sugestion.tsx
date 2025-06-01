@@ -104,7 +104,7 @@ export default function Sugestion(props: sugestionProps) {
     }
 
     return (
-        <div className="flex flex-col justify-around w-full gap-4 min-h-[20vh] h-fit rounded-md border-2 border-zinc-200 py-4 px-4 md:min-h-[32vh] xl:w-[25vw]">
+        <div className="flex flex-col justify-around w-full gap-4 min-h-[20vh] h-fit rounded-md border-2 border-zinc-200 py-4 px-4 md:min-h-[32vh] xl:w-[25vw] hover: transition-all duration-300 ease-in-out">
 
             <div className="flex items-center gap-2" >
                 <p className="text-zinc-800 text-sm text-pretty w-[95%] font-semibold md:text-base">{props.title}</p>
@@ -124,13 +124,13 @@ export default function Sugestion(props: sugestionProps) {
                     onClick={handleDeslikeSugestion}
                     >
                         <span className="text-sm font-semibold">{likes}</span>
-                        <Heart className="text-rose-500 animate-[pulse_2s_linear_1] rounded size-5" />
+                        <Heart className="text-rose-500 animate-[pulse_1s_linear_1] rounded size-5" />
 
                     </button>
                 }
                 {(!isLiked && user) &&
                     
-                    <button className="flex self-end gap-1.5 mr-2 cursor-pointer"
+                    <button className="flex self-end gap-1.5 mr-2 cursor-pointer animate-[pulse_1s_linear_1]"
                     onClick={handleLikeSugestion}
                     >
                         <span className="text-sm font-semibold">{likes}</span>

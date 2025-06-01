@@ -122,7 +122,7 @@ export default function Poll(props: pollProps) {
 
     if (isPollActive === "closed" && !isLoading) {
         return (
-            <div className={`flex relative flex-col justify-center w-full gap-4 h-fit rounded-md border-4 p-4 
+            <div className={`flex relative flex-col justify-center w-full gap-4 h-fit rounded-lg border-4 p-4 transition-all duration-200 ease-in-out
                 ${props.status === "closed" ? "bg-gray-200 border-zinc-300" : variants[props.variant]} 
                 md:w-[48%] xl:h-[40vh]`}>
 
@@ -152,7 +152,7 @@ export default function Poll(props: pollProps) {
 
     if (isPollActive === "open") {
         return (
-            <div className={`flex relative flex-col justify-center w-full gap-4 h-fit rounded-md border-4 p-4 
+            <div className={`flex relative flex-col justify-center w-full gap-4 h-fit rounded-lg border-4 p-4 transition-all duration-200 ease-in-out
                 ${props.status === "closed" ? "bg-zinc-200 border-zinc-400" : variants[props.variant]} 
                 md:w-[48%] xl:h-[40vh]`}>
 
@@ -175,7 +175,7 @@ export default function Poll(props: pollProps) {
                                 type="button"
                                 onClick={() => handleVote(op.id)}
                                 className={`flex justify-center items-center cursor-pointer size-8 rounded-full border-2 transition 
-                                    ${vote === op.id ? "bg-zinc-300 border-zinc-500" : "bg-zinc-50 border-zinc-200"}`}
+                                    ${vote === op.id ? "bg-zinc-300 border-zinc-500 animate-[spin_1s_linear_1]" : "bg-zinc-50 border-zinc-200"}`}
                             >
                                 <Unlink2 className={`size-5 transition ${vote === op.id ? "text-zinc-600" : "text-zinc-300 hover:text-zinc-500"}`} />
                             </button>

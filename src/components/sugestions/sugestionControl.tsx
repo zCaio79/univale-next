@@ -68,7 +68,7 @@ export default function SugestionControl(props: sugestionProps) {
     }
 
     return (
-        <div className="flex flex-col justify-around w-full gap-4 min-h-[20vh] h-fit rounded-md border-2 border-zinc-200 py-4 px-4 md:min-h-[30vh] xl:w-[25vw]">
+        <div className="flex flex-col justify-around w-full gap-4 min-h-[20vh] h-fit rounded-md border-2 border-zinc-200 py-4 px-6 md:min-h-[30vh] xl:w-[25vw]">
 
             <div className="flex items-center gap-2" >
                 <p className="text-zinc-900 text-sm text-pretty w-[95%] font-semibold md:text-base">{props.title}</p>

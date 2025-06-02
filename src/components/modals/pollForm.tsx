@@ -105,7 +105,7 @@ export default function PollForm() {
                         id="title"
                         type="text"
                         className="flex outline-0 text-sm rounded-md py-2 px-3 w-full md:w-[40vh] bg-zinc-50"
-                        maxLength={50}
+                        maxLength={35}
                         placeholder="titulo da enquete"
                         required
                         onChange={(e) => setTitle(e.target.value)} />

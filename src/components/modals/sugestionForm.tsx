@@ -84,7 +84,7 @@ export default function SugestionForm() {
                         id="title"
                         type="text"
                         className="flex outline-0 text-sm rounded-md py-2 px-3 w-full md:w-[40vh] bg-zinc-50"
-                        maxLength={100}
+                        maxLength={40}
                         placeholder="qual o tema da sua sugestão?"
                         onChange={(e) => { setTitle(e.target.value) }} />
                 </div>
@@ -96,7 +96,7 @@ export default function SugestionForm() {
                         id="desc"
                         required
                         className="flex outline-0 text-sm rounded-md text-wrap py-2 px-3 w-full md:w-[40vh] h-[20vh] bg-zinc-50"
-                        maxLength={200}
+                        maxLength={150}
                         placeholder="descreva a sua ideia com clareza..."
                         onChange={(e) => { setDesc(e.target.value) }} />
                 </div>

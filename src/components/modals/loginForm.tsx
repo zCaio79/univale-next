@@ -3,7 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { supabase } from "@/lib/supabaseClient";
 import bcrypt from "bcryptjs";
-import { ChevronLeft, ChevronRight, CircleAlert, EyeIcon, EyeOffIcon, LoaderCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight, CircleAlert, EyeIcon, EyeOffIcon, Fingerprint, GraduationCap, LoaderCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function LoginForm() {
@@ -88,7 +88,9 @@ export default function LoginForm() {
 
                 <div className="flex w-full justify-between flex-wrap flex-col gap-4">
                     <label htmlFor="email"
-                        className="text-zinc-700 font-semibold">Email institucional :</label>
+                        className="text-zinc-700 font-semibold flex gap-4 items-center">
+                            <GraduationCap className="size-5"/>
+                            Email institucional :</label>
                     <input
                         id="email"
                         type="email"
@@ -99,7 +101,9 @@ export default function LoginForm() {
                     />
                 </div>
                 <div className="flex w-full justify-between flex-wrap flex-col gap-4">
-                    <label htmlFor="RA" className="text-zinc-700 font-semibold">Senha :</label>
+                    <label htmlFor="RA" className="text-zinc-700 font-semibold flex gap-4 items-center">
+                        <Fingerprint className="size-5"/>
+                        Senha :</label>
                     <div className="relative">
                         <input
                             id="RA"

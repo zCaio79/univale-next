@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, Lightbulb, LoaderCircle } from "lucide-react";
+import { Heart, HeartHandshake, Lightbulb, LoaderCircle } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
@@ -124,7 +124,7 @@ export default function Sugestion(props: sugestionProps) {
                     onClick={handleDeslikeSugestion}
                     >
                         <span className="text-sm font-semibold">{likes}</span>
-                        <Heart className="text-rose-500 animate-[pulse_1s_linear_1] rounded size-5" />
+                        <HeartHandshake className="text-rose-500 animate-[pulse_1s_linear_1] rounded size-5" />
 
                     </button>
                 }

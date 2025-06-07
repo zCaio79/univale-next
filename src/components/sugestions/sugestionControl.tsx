@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, Lightbulb, LoaderCircle, TriangleAlert } from "lucide-react";
+import { HeartHandshake, Lightbulb, LoaderCircle, Trash2, TriangleAlert } from "lucide-react";
 import { sugestionProps } from "./sugestion";
 import { supabase } from "@/lib/supabaseClient";
 import { useState } from "react";
@@ -68,7 +68,7 @@ export default function SugestionControl(props: sugestionProps) {
     }
 
     return (
-        <div className="flex flex-col justify-around w-full gap-4 min-h-[20vh] h-fit rounded-md border-2 border-zinc-200 py-4 px-6 md:min-h-[30vh] xl:w-[25vw]">
+        <div className="flex flex-col justify-around w-full gap-4 min-h-[20vh] h-fit rounded-md border-2 border-zinc-200 py-4 px-6 md:min-h-[40vh] xl:w-[25vw]">
 
             <div className="flex items-center gap-2" >
                 <p className="text-zinc-900 text-sm text-pretty w-[95%] font-semibold md:text-base">{props.title}</p>
@@ -85,7 +85,7 @@ export default function SugestionControl(props: sugestionProps) {
                 <button className="flex self-end gap-1.5 mr-2">
 
                     <span className="text-sm font-semibold">{props.likes_amounth}</span>
-                    <Heart className=" size-5" />
+                    <HeartHandshake className=" size-5" />
 
                 </button>
             </div>
@@ -94,9 +94,9 @@ export default function SugestionControl(props: sugestionProps) {
             <button
                 onClick={handleDeleteConfirm}
                 type="button"
-                className="bg-red-400 self-center cursor-pointer w-full text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 md:w-fit hover:bg-red-500"
+                className="bg-red-400 self-center flex justify-center cursor-pointer w-full text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 md:w-fit hover:bg-red-500"
             >
-                Excluir
+                <Trash2 className="size-5"/>
             </button>
 
 

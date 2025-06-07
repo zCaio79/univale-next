@@ -1,7 +1,7 @@
 import MinimalHeader from "@/components/headers/minimalHeader";
 import AllPollsControl from "@/components/polls/allPollsControl";
 import { supabase } from "@/lib/supabaseClient";
-import { ArrowDown, ArrowRight, Plus } from "lucide-react";
+import { ArrowDown, ArrowRight, MessageSquarePlus } from "lucide-react";
 import Link from "next/link";
 
 
@@ -70,7 +70,7 @@ export default async function EnquetesControl() {
                         className="flex  gap-2 items-center bg-blue-500 rounded-md text-sm text-zinc-50 py-1.5 px-4 font-bold cursor-pointer hover:bg-blue-600
                         md:text-base"
                     >
-                        <Plus className="size-5" />
+                        <MessageSquarePlus className="size-5" />
                         Enquete
                     </Link>
 

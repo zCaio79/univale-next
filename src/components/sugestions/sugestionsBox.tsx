@@ -33,7 +33,7 @@ export default function SugestionsBox(props: sugestionsBoxProps) {
             id="sugestions"
             className="flex justify-center flex-col overflow-y-scroll scrollbar-custom overflow-x-hidden w-full h-fit gap-4 p-4 rounded-lg bg-zinc-50 xl:w-[40%] xl:h-[86vh]"
         >
-            <span className="flex gap-2 py-2 px-2 self-center text-lg font-bold text-zinc-600">
+            <span className="flex gap-2 py-2 px-2 self-center items-center text-lg font-bold text-zinc-600">
                 Mais Apoiados
                 <HeartHandshake />
             </span>
@@ -47,7 +47,7 @@ export default function SugestionsBox(props: sugestionsBoxProps) {
                 />
             ))}
 
-            <p className="text-zinc-500 text-sm font-semibold self-center py-2">Apoie as sugestões dos seus colegas !</p>
+            <p className="text-zinc-500 flex w-4/5 justify-center text-center text-sm font-semibold self-center py-2">Apoie as sugestões dos seus colegas !</p>
 
         </section>
     )

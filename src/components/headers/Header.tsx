@@ -17,7 +17,7 @@ export default function Header() {
        bg-zinc-50">
       <div className="flex w-full items-center justify-between">
 
-        <span className="flex gap-1 text-base items-center md:text-xl">
+        <span className="flex gap-2 items-center text-xl">
           <Link href="/" className="text-amber-600 font-bold hover:text-amber-700">
             Opina
           </Link>
@@ -27,7 +27,7 @@ export default function Header() {
             className="text-blue-500 font-bold cursor-pointer hover:animate-bounce ease-in-out">
             Univale
           </Link>
-          <p className="flex items-center">
+          <p className="hidden items-center sm:flex">
             <Megaphone className="size-6 ml-1" />
             <Wifi className="size-6 rotate-90" />
           </p>

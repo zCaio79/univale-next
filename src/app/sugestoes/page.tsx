@@ -1,7 +1,7 @@
 import MinimalHeader from "@/components/headers/minimalHeader";
 import AllSugestionsBox from "@/components/sugestions/allSugestionsBox";
 import { supabase } from "@/lib/supabaseClient";
-import { ArrowDown, ArrowRight, Plus } from "lucide-react";
+import { ArrowDown, ArrowRight, MessageCirclePlus } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = 'force-dynamic'
@@ -35,10 +35,9 @@ export default async function Sugestoes() {
           <ArrowDown className="size-6 text-zinc-700 md:hidden" />
 
           <Link href="sugestoes/novasugestao"
-            className="flex  gap-2 items-center bg-amber-500 rounded-md text-sm text-zinc-50 py-1.5 px-4 font-bold cursor-pointer hover:bg-amber-600
-                        md:text-base"
+            className="flex  gap-2 items-center bg-amber-500 rounded-md text-sm text-zinc-50 py-1.5 px-4 font-bold cursor-pointer hover:bg-amber-600 md:text-base"
           >
-            <Plus className="size-5" />
+            <MessageCirclePlus className="size-5" />
             Sugerir
           </Link>
 

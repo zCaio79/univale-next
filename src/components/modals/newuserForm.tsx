@@ -1,7 +1,7 @@
 'use client'
 
 import { supabase } from "@/lib/supabaseClient";
-import { ChevronLeft, ChevronRight, CircleAlert, EyeIcon, EyeOffIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, CircleAlert, Crown, EyeIcon, EyeOffIcon, GraduationCap} from "lucide-react";
 import { useState } from "react";
 import bcrypt from "bcryptjs";
 
@@ -105,12 +105,19 @@ export default function NewUserForm() {
                 </div>
 
                 <div className="flex w-full justify-center text-sm font-semibold items-center gap-4">
+
                     <input name="role" className=" saturate-0" type="radio" required
                         onChange={() => setRoleValue("student")} />
-                    <label htmlFor="role" className="text-blue-600" >Aluno</label>
+                    <label htmlFor="role" className="text-blue-600 flex gap-2 items-center" >
+                        
+                        <GraduationCap className="size-5" />
+                        Aluno</label>
+                    
                     <input name="role" className=" saturate-0" type="radio"
                         onChange={() => setRoleValue("admin")} />
-                    <label htmlFor="role" className="text-amber-600">Admin</label>
+                    <label htmlFor="role" className="text-amber-600 flex gap-2 items-center">
+                        <Crown className="size-5"/>
+                        Admin</label>
                 </div>
 
             </div>

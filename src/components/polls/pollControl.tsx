@@ -1,6 +1,6 @@
 'use client'
 
-import { CircleCheck, CircleHelp, Unlink2, BookmarkCheck, TriangleAlert, LoaderCircle } from "lucide-react";
+import { CircleCheck, CircleHelp, Unlink2, BookmarkCheck, TriangleAlert, LoaderCircle, Trash2 } from "lucide-react";
 import { pollProps } from "./poll";
 import { supabase } from "@/lib/supabaseClient";
 import { useState } from "react";
@@ -136,7 +136,7 @@ export default function PollControl(props: pollProps) {
                         type="button"
                         className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
                     >
-                        Excluir
+                        <Trash2 className="size-5"/>
                     </button>
 
                     <button
@@ -190,9 +190,9 @@ export default function PollControl(props: pollProps) {
                     <button
                         onClick={handleDeletePoll}
                         type="button"
-                        className="bg-red-400 cursor-pointer text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
+                        className="bg-red-400 cursor-pointer flex- justify-center text-zinc-50 text-sm font-bold rounded-md py-1.5 px-4 hover:bg-red-500"
                     >
-                        Excluir
+                        <Trash2 className="size-5"/>
                     </button>
 
                     <button

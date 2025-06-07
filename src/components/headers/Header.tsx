@@ -33,7 +33,7 @@ export default function Header() {
           </p>
         </span>
 
-        <nav className="flex gap-4 items-center">
+        <nav className="flex gap-8 items-center">
 
           <div className="hidden gap-4 items-center md:flex">
             <Link href="/sugestoes" className="text-sm text-zinc-800 hover:text-zinc-900">Sugestões</Link>

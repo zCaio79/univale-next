@@ -136,7 +136,7 @@ export default function LoginForm() {
                     <span className="flex items-center text-center text-zinc-600 text-xs font-semibold">
                         caso você não esteja registrado
                         <br />
-                        solicite o cadastro na instituição
+                        solicite o cadastro à instituição
                     </span>
                 </div>
             }

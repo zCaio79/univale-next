@@ -19,7 +19,8 @@ export default function LogoutButton() {
     <button type='button' onClick={handleLogout} className="font-semibold flex items-center gap-2 text-xs py-1.5 px-4 rounded-md text-zinc-50 
     shadow-md cursor-pointer bg-red-500 hover:bg-red-600 md:text-sm">
       <LogOut className='size-4'/>
-      Sair
+      <span className='hidden md:flex'>{user.user?.email?.split("@")[0]}</span>
+      <span className='flex md:hidden'>Sair</span>
     </button>
   )
 }

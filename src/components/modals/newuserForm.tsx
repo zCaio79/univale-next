@@ -1,7 +1,7 @@
 'use client'
 
 import { supabase } from "@/lib/supabaseClient";
-import { ChevronLeft, ChevronRight, CircleAlert, Crown, EyeIcon, EyeOffIcon, GraduationCap} from "lucide-react";
+import { ChevronLeft, ChevronRight, CircleAlert, Crown, EyeIcon, EyeOffIcon, GraduationCap, UserCheck2} from "lucide-react";
 import { useState } from "react";
 import bcrypt from "bcryptjs";
 
@@ -10,6 +10,7 @@ export default function NewUserForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
+    const [sucess, setSucess] = useState(false)
 
     const [userName, setUserName] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -18,6 +19,7 @@ export default function NewUserForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
+        setSucess(false)
         setIsLoading(true);
 
         const salt = bcrypt.genSaltSync(10);
@@ -45,6 +47,7 @@ export default function NewUserForm() {
             }
 
             alert("Pré-registro criado com sucesso!");
+            setSucess(true)
 
 
             setPassword("");
@@ -132,6 +135,20 @@ export default function NewUserForm() {
                     <span className="flex items-center text-center text-red-400 text-xs font-semibold">
 
                         {error}
+
+                    </span>
+
+                </div>
+            }
+
+            {sucess &&
+                <div className="flex w-full gap-4 p-2 items-center bg-emerald-400 rounded-sm justify-center md:w-[30vw]">
+
+                    <UserCheck2 className="text-zinc-50 size-5" />
+
+                    <span className="flex items-center text-center text-zinc-50 text-sm font-semibold">
+
+                        Aluno Registrado com Sucesso!
 
                     </span>
 

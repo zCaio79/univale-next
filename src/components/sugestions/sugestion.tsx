@@ -124,7 +124,7 @@ export default function Sugestion(props: sugestionProps) {
                     onClick={handleDeslikeSugestion}
                     >
                         <span className="text-sm font-semibold">{likes}</span>
-                        <HeartHandshake className="text-rose-500 animate-[pulse_1s_linear_1] rounded size-5" />
+                        <HeartHandshake className="text-rose-500 cursor-pointer animate-[pulse_1s_linear_1] rounded size-5" />
 
                     </button>
                 }
@@ -133,7 +133,7 @@ export default function Sugestion(props: sugestionProps) {
                     <button className="flex self-end gap-1.5 mr-2 cursor-pointer animate-[pulse_1s_linear_1]"
                     onClick={handleLikeSugestion}
                     >
-                        <span className="text-sm font-semibold">{likes}</span>
+                        <span className="text-sm font-semibold cursor-pointer">{likes}</span>
                         <Heart className=" size-5" />
                     </button>
 

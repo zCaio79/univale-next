@@ -22,6 +22,12 @@ export async function middleware(req: NextRequest) {
     return res
   }
 
+  if (user.email && pathname === '/login') {
+    const dashboardUrl = req.nextUrl.clone()
+    dashboardUrl.pathname = '/'
+    return NextResponse.redirect(dashboardUrl)
+  }
+
   const { data: profile, error } = await supabase
     .from('profiles')
     .select('role')
@@ -43,5 +49,6 @@ export const config = {
   matcher: [
     '/admin/:path*',
     '/sugestoes/novasugestao',
+    '/login'
   ],
 }

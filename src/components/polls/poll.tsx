@@ -1,6 +1,6 @@
 'use client'
 
-import { BookmarkCheck, CircleCheck, CircleHelp, Dot, LoaderCircle, Unlink2 } from "lucide-react";
+import { BookmarkCheck, CircleCheck, CircleHelp, Dot, LoaderCircle, SendHorizonal, Unlink2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import ModalStatus from "../modals/modalStatus";
 import { useAuth } from "@/context/AuthContext";
@@ -20,10 +20,10 @@ export type pollProps = {
 };
 
 const variants = {
-    red: "border-red-200 bg-red-50",
-    blue: "border-blue-200 bg-blue-50",
-    emerald: "border-emerald-200 bg-emerald-50",
-    amber: "border-amber-200 bg-amber-50",
+    red: "border-red-200 bg-gradient-to-br from-red-50 via-red-50 to-red-200",
+    blue: "border-blue-200 bg-gradient-to-br from-blue-50 via-blue-50 to-blue-200",
+    emerald: "border-emerald-200 bg-gradient-to-br from-emerald-50 via-emerald-50 to-emerald-200",
+    amber: "border-amber-200 bg-gradient-to-br from-amber-50 via-amber-50 to-amber-200",
 };
 
 export default function Poll(props: pollProps) {
@@ -189,12 +189,12 @@ export default function Poll(props: pollProps) {
                 {(user && isPollActive) &&
                     <button
                         type="button"
-                        className={`rounded-md py-1.5 px-2.5 text-sm font-bold
-                        ${vote ? "bg-zinc-700 text-zinc-50 hover:bg-zinc-800 cursor-pointer" : "bg-zinc-400 text-zinc-200"}`}
+                        className={`rounded-md py-1.5 px-2.5 text-sm font-bold flex justify-center
+                        ${vote ? "bg-zinc-700 text-zinc-50 hover:bg-zinc-800 cursor-pointer" : "bg-zinc-100 border-2 border-zinc-200 text-zinc-500"}`}
                         disabled={!vote || error !== "" || isVoted}
                         onClick={() => voting(vote)}
                     >
-                        Votar
+                        <span className="flex w-full gap-2 items-center justify-center">Votar <SendHorizonal className="size-4"/></span> 
                     </button>
                 }
             </div>

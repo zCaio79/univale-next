@@ -36,9 +36,9 @@ export default function Header() {
         <nav className="flex gap-8 items-center">
 
           <div className="hidden gap-4 items-center md:flex">
-            <Link href="/sugestoes" className="text-sm text-zinc-800 hover:text-zinc-900">Sugestões</Link>
+            <Link href="/sugestoes" className="text-sm text-zinc-800 cursor-pointer hover:text-zinc-900">Sugestões</Link>
             <span>|</span>
-            <Link href="/enquetes" className="text-sm text-zinc-800 hover:text-zinc-900">Enquetes</Link>
+            <Link href="/enquetes" className="text-sm text-zinc-800 cursor-pointer hover:text-zinc-900">Enquetes</Link>
           </div>
 
           {!user && pathName !== "/login" && ( 

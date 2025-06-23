@@ -148,7 +148,7 @@ export default function NewUserForm() {
 
                     <span className="flex items-center text-center text-zinc-50 text-sm font-semibold">
 
-                        Aluno Registrado com Sucesso!
+                        Usuário Registrado com Sucesso!
 
                     </span>
 
